@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.*;
-import javax.swing.JPanel;
+//import javax.swing.JPanel;
 
 public class Generator {
     public static final Pattern PATTERN       = Pattern.compile("[^(;),]+");
@@ -39,7 +39,7 @@ public class Generator {
     public final Train            train;
     private int                   time;
     private boolean               initial;
-    private JPanel                panel = null;
+//    private JPanel                panel = null;
 
     public Generator(String fileName) {
         this();
@@ -48,7 +48,7 @@ public class Generator {
         initial = false;
     }
 
-    public void addPanel(JPanel panel) { this.panel = panel; }
+//    public void addPanel(JPanel panel) { this.panel = panel; }
 
     public void read(String fileName) {
         printWithSeparator("Begin of creation");
