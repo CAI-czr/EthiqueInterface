@@ -8,5 +8,6 @@ public class TestGenerator {
 		Generator g2 = new Generator("data/testsw.lp");
 		g2.simulation();
 	}
+	
 }
 
