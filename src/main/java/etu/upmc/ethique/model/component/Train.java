@@ -1,11 +1,13 @@
 package etu.upmc.ethique.model.component;
 
 
+import etu.upmc.ethique.model.graph.CShape;
+
 public class Train implements ComponentTrolley {
     public static final boolean STOPAFTERCOLLISION = true;
     public Carriage             originPosition;
     private Carriage            present;
-    private CShape              cshape;
+    private CShape cshape;
     public CShape               getCShape() { return cshape; }
     public void                 setCShape(CShape cshape) { this.cshape = cshape; }
     public Train(Carriage originPosition) {

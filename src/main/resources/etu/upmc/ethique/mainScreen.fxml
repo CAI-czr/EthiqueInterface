@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.canvas.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -9,13 +11,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="etu.upmc.ethique.PrimaryController">
+<Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="etu.upmc.ethique.MainScreen">
    <children>
-      <Label layoutX="522.0" layoutY="306.0" prefHeight="35.0" prefWidth="190.0" text="Primary View" />
-      <Button fx:id="primaryButton" layoutX="446.0" layoutY="364.0" onAction="#switchToSecondary" text="Switch to Secondary View" />
-      <Label layoutX="573.0" layoutY="429.0" text="TEST" />
-      <MenuBar prefHeight="51.0" prefWidth="1280.0">
+      <MenuBar prefHeight="51.0" prefWidth="1920.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -34,5 +32,23 @@
           </Menu>
         </menus>
       </MenuBar>
+      <SplitPane dividerPositions="0.2273201251303441" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1030.0" prefWidth="1920.0">
+         <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1028.0" prefWidth="412.0">
+               <children>
+                  <Label layoutX="114.0" layoutY="32.0" prefHeight="35.0" prefWidth="190.0" text="Primary View" />
+                  <Button fx:id="primaryButton" layoutX="57.0" layoutY="323.0" onAction="#switchToSecondary" prefHeight="51.0" prefWidth="320.0" text="Switch to Secondary View" />
+                  <Button fx:id="runButton" layoutX="57.0" layoutY="254.0" onAction="#runTrain" text="run" />
+                  <Button fx:id="runOneButton" layoutX="175.0" layoutY="254.0" onAction="#runOneStepTrain" text="one" />
+                  <Button fx:id="resetTrainButton" layoutX="293.0" layoutY="254.0" onAction="#resetTrain" text="reset" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1028.0" prefWidth="1470.0">
+               <children>
+                  <Pane fx:id="drawPane" layoutX="90.0" layoutY="76.0" prefHeight="825.0" prefWidth="1259.0" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
    </children>
 </Pane>

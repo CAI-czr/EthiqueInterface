@@ -1,12 +1,14 @@
 package etu.upmc.ethique.model.component;
 
+import etu.upmc.ethique.model.graph.CShape;
+
 /*
     Le class Bridge.
 */
 public class Bridge extends Position {
     private Position position;
     private boolean  push;
-    private CShape   cshape;
+    private CShape cshape;
     public CShape    getCShape() { return cshape; }
     public void      setCShape(CShape cshape) { this.cshape = cshape; }
     public Bridge(String name, Position position) {

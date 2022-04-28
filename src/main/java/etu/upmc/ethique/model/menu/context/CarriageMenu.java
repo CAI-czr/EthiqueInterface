@@ -1,4 +1,4 @@
-package etu.upmc.ethique.model.menus.context;
+package etu.upmc.ethique.model.menu.context;
 
 import etu.upmc.ethique.model.component.Carriage;
 import etu.upmc.ethique.model.graph.Vertex;

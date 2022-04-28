@@ -423,4 +423,7 @@ public class Generator {
     }
 
     public void setTime(int n) { time = n; }
+    public int getTime() {return time; }
+
+
 }

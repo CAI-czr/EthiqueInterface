@@ -1,4 +1,6 @@
 package etu.upmc.ethique.model.component;
+import etu.upmc.ethique.model.graph.CShape;
+
 import java.util.ArrayList;
 
 /*Le class Track, qui est une liste de troncon*/

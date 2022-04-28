@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b7953085-b921-4984-9d75-bca9ec725a29" name="Changes" comment="baisc interface">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/MainScreen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/graph/CShape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/graph/Drawing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/graph/Edge.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/graph/Graph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/graph/GraphConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/graph/PaintPane.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/graph/Vertex.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/menu/context/CarriageMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/menu/context/SwitchMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/etu/upmc/ethique/mainScreen.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/etu/upmc/ethique/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/PrimaryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/SecondaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/SecondaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/Bridge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/Bridge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/CShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/Carriage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/Carriage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/ComponentTrolley.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/ComponentTrolley.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/Generator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/Track.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/Train.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/upmc/ethique/model/component/Train.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/etu/upmc/ethique/primary.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/etu/upmc/ethique/TestGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/etu/upmc/ethique/TestGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/PrimaryController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/SecondaryController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/data/pp.lp" beforeDir="false" afterPath="$PROJECT_DIR$/data/pp.lp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/data/test - Copy.lp" beforeDir="false" afterPath="$PROJECT_DIR$/data/test - Copy.lp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/data/test.lp" beforeDir="false" afterPath="$PROJECT_DIR$/data/test.lp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/data/testsw.lp" beforeDir="false" afterPath="$PROJECT_DIR$/data/testsw.lp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/data/trolley1act.lp" beforeDir="false" afterPath="$PROJECT_DIR$/data/trolley1act.lp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/model/component/Botton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/model/component/Bridge.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/model/component/CShape$Type.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/model/component/CShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/model/component/Carriage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/model/component/ComponentTrolley.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/model/component/Event.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/model/component/Generator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/model/component/Group.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/model/component/Position.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/model/component/Switch.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/model/component/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/model/component/Track.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/model/component/Train.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/primary.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/etu/upmc/ethique/secondary.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="28JVgumK7KGLP0v2vcWpGHcYOCX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/load/ethique/src/main/java/etu/upmc/ethique&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;module&quot;,
+      &quot;directory&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="etu.upmc.ethique" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="etu.upmc.ethique.App" />
+      <module name="ethique" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="etu.upmc.ethique.model.menus.context.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="etu.upmc.ethique.TestGenerator" />
+      <module name="ethique" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="etu.upmc.ethique.model.menus.context.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="etu.upmc.ethique.model.menus.context.contextMenu_1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="etu.upmc.ethique.model.menus.context.contextMenu_1" />
+      <module name="ethique" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="etu.upmc.ethique.model.menus.context.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b7953085-b921-4984-9d75-bca9ec725a29" name="Changes" comment="" />
+      <created>1650934794484</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1650934794484</updated>
+    </task>
+    <task id="LOCAL-00001" summary="idea config">
+      <created>1650935441572</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1650935441572</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
+    <MESSAGE value="idea config" />
+    <MESSAGE value="baisc interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="baisc interface" />
+  </component>
+</project>

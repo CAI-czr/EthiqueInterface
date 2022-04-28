@@ -1,4 +1,4 @@
-package etu.upmc.ethique.model.menus.context;
+package etu.upmc.ethique.model.menu.context;
 
 import etu.upmc.ethique.model.component.Switch;
 import javafx.scene.control.ContextMenu;

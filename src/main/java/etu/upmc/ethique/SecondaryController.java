@@ -1,4 +1,4 @@
-package etu.upmc.ethique.model.menus;
+package etu.upmc.ethique;
 
 import java.io.IOException;
 

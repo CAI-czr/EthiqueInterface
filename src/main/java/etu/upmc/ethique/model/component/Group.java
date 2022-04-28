@@ -1,6 +1,7 @@
 package etu.upmc.ethique.model.component;
 
 
+import etu.upmc.ethique.model.graph.CShape;
 
 /*
 Le class Group.Les informations pour les groupes de personne.
@@ -10,7 +11,7 @@ public class Group implements ComponentTrolley {
     private Position position;
     private boolean  alive;
     private String   name;
-    private CShape   cshape;
+    private CShape cshape;
     public CShape    getCShape() { return cshape; }
     public void      setCShape(CShape cshape) { this.cshape = cshape; }
     public Group(int nb, Position position, String name) {
