@@ -1,5 +1,7 @@
 package etu.upmc.ethique.model.component;
+
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.*;
@@ -10,35 +12,35 @@ import java.util.regex.*;
 //import javax.swing.JPanel;
 
 public class Generator {
-    public static final Pattern PATTERN       = Pattern.compile("[^(;),]+");
-    public static final String  TRACK         = "track";
-    public static final String  NUMBERINGROUP = "numberInGroup";
-    public static final String  GROUP         = "group";
-    public static final String  OBJECT        = "object";
-    public static final String  TIME          = "time";
-    public static final String  INITIALLY     = "initially";
-    public static final String  BRIDGEON      = "bridgeOn";
-    public static final String  BOTTONON      = "bottonOn";
-    public static final String  TRAIN         = "train";
-    public static final String  ON            = "on";
-    public static final String  ALIVE         = "alive";
+    public static final Pattern PATTERN = Pattern.compile("[^(;),]+");
+    public static final String TRACK = "track";
+    public static final String NUMBERINGROUP = "numberInGroup";
+    public static final String GROUP = "group";
+    public static final String OBJECT = "object";
+    public static final String TIME = "time";
+    public static final String INITIALLY = "initially";
+    public static final String BRIDGEON = "bridgeOn";
+    public static final String BOTTONON = "bottonOn";
+    public static final String TRAIN = "train";
+    public static final String ON = "on";
+    public static final String ALIVE = "alive";
 
     public static final String EFFECT = "effect";
-    public static final String PREC   = "prec";
-    public static final String ACT    = "act";
+    public static final String PREC = "prec";
+    public static final String ACT = "act";
     public static final String SWITCH = "switch";
 
-    public static final String NEG       = "neg";
-    public static final String END       = ".\n";
+    public static final String NEG = "neg";
+    public static final String END = ".\n";
     public static final String SEPARATOR = "-------------";
 
     public final ArrayList<Track> tracks;
     public final ArrayList<Switch> switchs;
     public final ArrayList<Bridge> bridges;
     public final ArrayList<Group> groups;
-    public final Train            train;
-    private int                   time;
-    private boolean               initial;
+    public final Train train;
+    private int time;
+    private boolean initial;
 //    private JPanel                panel = null;
 
     public Generator(String fileName) {
@@ -46,6 +48,14 @@ public class Generator {
         initial = true;
         read(fileName);
         initial = false;
+    }
+
+    public Generator(File file) {
+        this();
+        initial = true;
+        readFile(file);
+        initial = false;
+        System.out.println("The final reading:\n" + toString());
     }
 
 //    public void addPanel(JPanel panel) { this.panel = panel; }
@@ -57,11 +67,10 @@ public class Generator {
         System.out.println("The final reading:\n" + toString());
     }
 
-    public void readFile(String fileName) {
+    public void readFile(File file) {
         try {
-            Path    path       = Paths.get(fileName);
-            Scanner scanner    = new Scanner(path);
-            int     lineNumber = 0;
+            Scanner scanner = new Scanner(file);
+            int lineNumber = 0;
             while (scanner.hasNextLine()) {
                 ++lineNumber;
                 String line = scanner.nextLine();
@@ -79,7 +88,19 @@ public class Generator {
         }
     }
 
-    public String combineContent(String s1, String s2) { return s1 + "(" + s2 + ")"; }
+    public void readFile(String fileName) {
+        try {
+            Path path = Paths.get(fileName);
+            File file = new File(fileName);
+            readFile(file);
+        } catch (Exception e) {
+            System.out.println("File does not exist or an unknown error has occurred");
+        }
+    }
+
+    public String combineContent(String s1, String s2) {
+        return s1 + "(" + s2 + ")";
+    }
 
     public String writeComponentTrolley(ComponentTrolley[] listComponentTrolleys) {
         String content = "";
@@ -92,14 +113,26 @@ public class Generator {
 
     public void save(String fileName) {
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("./source/" + fileName));
+            File file = new File("./source/" + fileName);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            saveFile(file);
+        } catch (Exception e) {
+        }
+    }
+
+    public void saveFile(File file) {
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter out = new BufferedWriter(fileWriter);
             out.write("% " + SEPARATOR + "DOMAINS" + SEPARATOR + " %\n");
             // time
             out.write(combineContent(TIME, generateNumber(time)) + END);
             // track
             out.write(combineContent(
-                          TRACK, writeComponentTrolley(tracks.toArray(new Track[tracks.size()]))) +
-                      END);
+                    TRACK, writeComponentTrolley(tracks.toArray(new Track[tracks.size()]))) +
+                    END);
             // group
             String content = "";
             for (int i = 0; i < groups.size(); i++) {
@@ -109,14 +142,14 @@ public class Generator {
             out.write(combineContent(GROUP, content) + END);
             // NumberIngroup
             out.write(
-                combineContent(NUMBERINGROUP,
-                               writeComponentTrolley(groups.toArray(new Group[groups.size()]))) +
-                END);
+                    combineContent(NUMBERINGROUP,
+                            writeComponentTrolley(groups.toArray(new Group[groups.size()]))) +
+                            END);
             // Bridge
             out.write(
-                combineContent(
-                    BRIDGEON, writeComponentTrolley(bridges.toArray(new Bridge[bridges.size()]))) +
-                END);
+                    combineContent(
+                            BRIDGEON, writeComponentTrolley(bridges.toArray(new Bridge[bridges.size()]))) +
+                            END);
             out.write("% " + SEPARATOR + "INITIAL SITUATION" + SEPARATOR + " %\n");
             // position of groups
             content = "";
@@ -124,7 +157,7 @@ public class Generator {
                 if (i != 0) content += ";";
                 if (groups.get(i).getPosition() != null) {
                     content +=
-                        groups.get(i).getName() + "," + groups.get(i).getPosition().getName();
+                            groups.get(i).getName() + "," + groups.get(i).getPosition().getName();
                 }
             }
             out.write(combineContent(INITIALLY, combineContent(ON, content)) + END);
@@ -137,15 +170,20 @@ public class Generator {
             out.write(combineContent(INITIALLY, combineContent(ALIVE, content)) + END);
             // initial position of train
             out.write(combineContent(
-                          INITIALLY,
-                          combineContent(ON, TRAIN + "," + train.getOriginPosition().getName())) +
-                      END);
+                    INITIALLY,
+                    combineContent(ON, TRAIN + "," + train.getOriginPosition().getName())) +
+                    END);
             out.close();
         } catch (IOException e) {
         }
     }
 
-    public void reset() { train.setPresent(train.getOriginPosition()); }
+    public void reset() {
+        train.setPresent(train.getOriginPosition());
+        for (Group group : groups) {
+            group.setAlive(true);
+        }
+    }
 
     public void simulation() {
         int i = 0;
@@ -160,24 +198,23 @@ public class Generator {
 
     public void read_information(Matcher matcher, String line) {
         switch (matcher.group()) {
-        case TRACK: readTrack(matcher); break;
-        case OBJECT: break;
-        case GROUP: readGroups(matcher); break;
-        case NUMBERINGROUP: readNumberInGroup(matcher); break;
-        case BRIDGEON: readBridges(matcher); break;
-        case TIME: time = Math.max(time, readNumber(line)[1]); break;
-        case INITIALLY: readInitial(matcher); break;
-        case ACT: readAct(matcher); break;
-        case PREC: readPrec(matcher); break;
-        case EFFECT: readEffect(matcher); break;
-        default: break;
+            case TRACK -> readTrack(matcher);
+//            case OBJECT->break;
+            case GROUP -> readGroups(matcher);
+            case NUMBERINGROUP -> readNumberInGroup(matcher);
+            case BRIDGEON -> readBridges(matcher);
+            case TIME -> time = Math.max(time, readNumber(line)[1]);
+            case INITIALLY -> readInitial(matcher);
+            case ACT -> readAct(matcher);
+            case PREC -> readPrec(matcher);
+            case EFFECT -> readEffect(matcher);
         }
     }
 
     public void readEffect(Matcher matcher) {
         matcher.usePattern(Pattern.compile("([^,]+),([^)]+)"));
         if (matcher.find()) {
-            String Sevent      = matcher.group(1);
+            String Sevent = matcher.group(1);
             String consequance = matcher.group(2);
             System.out.println("try to read effect of " + Sevent + " cause " + consequance);
             Event event = readEvent(Sevent);
@@ -206,15 +243,16 @@ public class Generator {
         if (matcher.find()) {
             String key = matcher.group();
             switch (key) {
-            case SWITCH:
-                System.out.println("try to read switch");
-                Position pos = readPosition(matcher);
-                if (((Carriage) pos).getSwitch() != null) {
-                    System.out.println("Event is read as Switch on " + pos.toString());
-                    return ((Carriage) pos).getSwitch();
-                }
-                break;
-            default: break;
+                case SWITCH:
+                    System.out.println("try to read switch");
+                    Position pos = readPosition(matcher);
+                    if (((Carriage) pos).getSwitch() != null) {
+                        System.out.println("Event is read as Switch on " + pos.toString());
+                        return ((Carriage) pos).getSwitch();
+                    }
+                    break;
+                default:
+                    break;
             }
         }
         return null;
@@ -224,15 +262,18 @@ public class Generator {
         matcher.usePattern(Pattern.compile("([^,]+),([^,]+)"));
         if (matcher.find()) {
             String preCondtion = matcher.group(1);
-            String event       = matcher.group(2);
+            String event = matcher.group(2);
         }
     }
 
     public void readAct(Matcher matcher) {
         if (matcher.find()) {
             switch (matcher.group()) {
-            case SWITCH: readSwitch(matcher); break;
-            default: break;
+                case SWITCH:
+                    readSwitch(matcher);
+                    break;
+                default:
+                    break;
             }
         }
     }
@@ -240,9 +281,14 @@ public class Generator {
     public void readInitial(Matcher matcher) {
         if (matcher.find()) {
             switch (matcher.group()) {
-            case ON: readOn(matcher); break;
-            case ALIVE: readAlive(matcher); break;
-            default: break;
+                case ON:
+                    readOn(matcher);
+                    break;
+                case ALIVE:
+                    readAlive(matcher);
+                    break;
+                default:
+                    break;
             }
         }
     }
@@ -261,7 +307,9 @@ public class Generator {
         return null;
     }
 
-    public static String generateNumber(int max) { return "0..." + max; }
+    public static String generateNumber(int max) {
+        return "0..." + max;
+    }
 
     public static int find(ComponentTrolley[] l, String name) {
         for (int i = 0; i < l.length; i++) {
@@ -273,7 +321,7 @@ public class Generator {
     }
 
     public void readTrack(Matcher m) {
-        int    num = -1;
+        int num = -1;
         String name;
         while (m.find()) {
             name = m.group();
@@ -287,8 +335,8 @@ public class Generator {
 
     public int[] readNumber(String num) {
         Pattern numberPattern = Pattern.compile("[0-9]+");
-        Matcher matcher       = numberPattern.matcher(num);
-        int[] number          = new int[2];
+        Matcher matcher = numberPattern.matcher(num);
+        int[] number = new int[2];
         matcher.find();
         number[0] = Integer.valueOf(matcher.group());
         if (matcher.find())
@@ -312,7 +360,7 @@ public class Generator {
             if (i != -1) {
                 groups.get(i).setNb(Integer.valueOf(m.group(2)));
                 System.out.printf("set group %s as %s persons\n", groups.get(i).getName(),
-                                  m.group(2));
+                        m.group(2));
             }
         }
     }
@@ -342,17 +390,19 @@ public class Generator {
         return null;
     }
 
-    public boolean isInitial() { return initial; }
+    public boolean isInitial() {
+        return initial;
+    }
 
     public void readOn(Matcher matcher) {
         Pattern on = Pattern.compile("([a-z0-9]+),([a-z]+)\\(*([0-9]*)");
         matcher.usePattern(on);
         while (matcher.find()) {
             System.out.println("try to read the position : " + matcher.group(2) +
-                               matcher.group(3));
-            String   name     = matcher.group(1);
+                    matcher.group(3));
+            String name = matcher.group(1);
             Position position = readPosition(matcher.group(2), matcher.group(3));
-            int      index;
+            int index;
             if (name.equals(TRAIN)) {
                 if (initial || train.getOriginPosition() == null)
                     train.setOriginPosition((Carriage) position);
@@ -367,7 +417,9 @@ public class Generator {
         }
     }
 
-    public void readBridges(Matcher matcher) { readOn(matcher); }
+    public void readBridges(Matcher matcher) {
+        readOn(matcher);
+    }
 
     public void readAlive(Matcher matcher) {
         int index;
@@ -415,15 +467,31 @@ public class Generator {
     }
 
     public Generator() {
-        train   = new Train();
-        tracks  = new ArrayList<Track>();
+        train = new Train();
+        tracks = new ArrayList<Track>();
         switchs = new ArrayList<Switch>();
         bridges = new ArrayList<Bridge>();
-        groups  = new ArrayList<Group>();
+        groups = new ArrayList<Group>();
     }
 
-    public void setTime(int n) { time = n; }
-    public int getTime() {return time; }
+    public void setTime(int n) {
+        time = n;
+    }
 
+    public int getTime() {
+        return time;
+    }
+
+    public void removeCarriage(Carriage carriage) {
+        for (Track track : tracks) {
+            if (track.getName().equals(carriage.getTrack())) {
+                int idx = track.indexOf(carriage);
+                if (idx != 0 && idx != track.size() - 1) {
+                    track.get(idx - 1).suivant = track.get(idx + 1);
+                }
+                track.remove(carriage);
+            }
+        }
+    }
 
 }

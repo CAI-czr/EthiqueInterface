@@ -10,6 +10,8 @@ module etu.upmc.exmple {
 	exports etu.upmc.ethique;
     exports etu.upmc.ethique.model.menu.context;
     opens etu.upmc.ethique.model.menu.context to javafx.fxml;
+    exports etu.upmc.ethique.model.menu;
+    opens etu.upmc.ethique.model.menu to javafx.fxml;
 //    exports etu.upmc.ethique.model.menus;
 //    opens etu.upmc.ethique.model.menus to javafx.fxml;
 }

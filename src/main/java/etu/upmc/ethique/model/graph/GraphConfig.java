@@ -9,13 +9,17 @@ public class GraphConfig {
     public final int yMinValue;
     public final int xMaxValue;
     public final int xMinValue;
+    public final int xSize;
+    public final int ySize;
 
     public GraphConfig() {
-        xDistance = 50;
-        yDistance = 50;
-        yMaxValue = 400;
-        yMinValue = 0;
-        xMaxValue = 400;
-        xMinValue = 0;
+        xDistance = 80;
+        yDistance = 80;
+        yMaxValue = 700;
+        yMinValue = 100;
+        xMaxValue = 700;
+        xMinValue = 100;
+        xSize=20;
+        ySize=20;
     }
 }

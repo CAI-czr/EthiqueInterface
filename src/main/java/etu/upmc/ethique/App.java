@@ -13,10 +13,11 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private static Scene scene;
+    private static Scene scene = null;
+
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("mainScreen"), 1280, 600);
+        scene = new Scene(loadFXML("mainScreen"), 1280, 800);
         stage.setScene(scene);
         stage.show();
     }

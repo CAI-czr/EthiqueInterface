@@ -18,13 +18,13 @@ public class Bridge extends Position {
             Carriage tmp = (Carriage) this.position;
             tmp.add(this);
         }
-        push = false;
+        push = true;
     }
 
     public void delPosition() {
         if (this.position instanceof Carriage) {
             Carriage tmp = (Carriage) this.position;
-            tmp.delBridge();
+            tmp.deleteBridge();
         }
         position = null;
     }

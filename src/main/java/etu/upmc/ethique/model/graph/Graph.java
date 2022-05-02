@@ -2,6 +2,7 @@ package etu.upmc.ethique.model.graph;
 
 import etu.upmc.ethique.model.component.Carriage;
 import etu.upmc.ethique.model.component.Generator;
+import etu.upmc.ethique.model.component.Group;
 import etu.upmc.ethique.model.component.Track;
 
 import java.util.ArrayList;

@@ -1,5 +1,7 @@
 package etu.upmc.ethique.model.graph;
 
+import etu.upmc.ethique.model.component.Carriage;
+import etu.upmc.ethique.model.component.Group;
 import javafx.geometry.Point2D;
 
 import java.util.ArrayList;
@@ -10,10 +12,18 @@ import java.util.Map;
 public class Drawing {
     private Map<Vertex, Point2D> vertexMappings;
     private Map<Edge, List<Point2D>> edgeMappings;
+    private Graph graph;
 
     public Drawing() {
         vertexMappings = new HashMap<Vertex, Point2D>();
         edgeMappings = new HashMap<Edge, List<Point2D>>();
+    }
+
+    public Drawing(Graph graph, GraphConfig graphConfig) {
+        this();
+        this.graph = graph;
+        positionVertex(graph.getVertices(), graphConfig);
+        positionEdges(graph.getEdges());
     }
 
     public void positionEdges(List<Edge> edges) {
@@ -30,24 +40,26 @@ public class Drawing {
         int xPosition = graphConfig.xMinValue;
         int yPosition = graphConfig.yMinValue;
         for (Vertex v : vertexs) {
-            vertexMappings.put(v, new Point2D(xPosition, yPosition));
-            xPosition = xPosition + graphConfig.xDistance;
-            if (xPosition >= graphConfig.xMaxValue) {
-                yPosition += graphConfig.yDistance;
-                xPosition = graphConfig.xMinValue;
+            if (v.getContent() instanceof Carriage) {
+                vertexMappings.put(v, new Point2D(xPosition, yPosition));
+                xPosition = xPosition + graphConfig.xDistance;
+                if (xPosition >= graphConfig.xMaxValue) {
+                    yPosition += graphConfig.yDistance;
+                    xPosition = graphConfig.xMinValue;
+                }
             }
         }
     }
 
-    public Point2D getVertexPoint2D(Vertex vertex){
+    public Point2D getVertexPoint2D(Vertex vertex) {
         return vertexMappings.get(vertex);
     }
 
-    public Point2D getEdgePoint2DOut(Edge edge){
+    public Point2D getEdgePoint2DOut(Edge edge) {
         return edgeMappings.get(edge).get(1);
     }
 
-    public Point2D getEdgePoint2DIn(Edge edge){
+    public Point2D getEdgePoint2DIn(Edge edge) {
         return edgeMappings.get(edge).get(0);
     }
 }

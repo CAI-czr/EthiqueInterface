@@ -7,13 +7,13 @@ numberInGroup(g1,5;g2,2;g3,1).
 
 buttonOn(main(0)).
 buttonOn(side(3)).
-bridgeOn(b,main(4)).												
+%bridgeOn(b,main(4)).		%
 
 
 % ------------ INITIAL SITUATION -------------------------------- %
 initially(on(g1,main(6))).
 initially(on(g2,side(7))).
-initially(on(g3,b)).
+%initially(on(g3,b)).%
 initially(alive(g1;g2;g3)).
 initially(on(train,main(0))).
 
