@@ -69,10 +69,10 @@
                                  <children>
                                     <ScrollPane prefHeight="218.0" prefWidth="917.0">
                                        <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="889.0" />
+                                        <AnchorPane fx:id="log" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="889.0" />
                                        </content>
                                     </ScrollPane>
-                                    <TextField prefHeight="0.0" prefWidth="917.0">
+                                    <TextField fx:id="commandText" prefHeight="0.0" prefWidth="917.0">
                                        <font>
                                           <Font size="18.0" />
                                        </font></TextField>

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import etu.upmc.ethique.model.component.Bridge;
 import etu.upmc.ethique.model.component.Carriage;
 import etu.upmc.ethique.model.component.Generator;
 import etu.upmc.ethique.model.component.Group;
@@ -17,10 +18,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.Background;
@@ -38,6 +41,10 @@ public class MainScreen implements Initializable, Updater {
 
     private Graph graph;
     private Drawing drawing;
+    @FXML
+    private Pane log;
+    @FXML
+    private TextField commandText;
     private GraphConfig graphConfig;
     private Generator generator;
 
@@ -72,7 +79,6 @@ public class MainScreen implements Initializable, Updater {
             update();
         }
     }
-
 
     @FXML
     private void switchToSecondary() throws IOException {
@@ -152,6 +158,34 @@ public class MainScreen implements Initializable, Updater {
             if (nb <= 0) break;
         }
         drawPane.getChildren().add(canvas);
+        installTooltip(canvas, group, group.getPosition());
+        if (group.getPosition() instanceof Carriage) {
+            installCarriageMenu(canvas, (Carriage) group.getPosition());
+        }
+    }
+
+    public void paintBridge(Point2D pos, Bridge bridge) {
+        Circle circle = new Circle();
+        circle.setCenterX(pos.getX());
+        circle.setCenterY(pos.getY());
+        circle.setRadius(graphConfig.xSize / 2);
+        circle.setFill(Color.GREY);
+        drawPane.getChildren().add(circle);
+        installTooltip(circle, bridge);
+        if (bridge.getGroup() != null) {
+            paintGroup(pos, bridge.getGroup());
+        }
+    }
+
+    public static void installTooltip(Node node, Object... objects) {
+        String out = "";
+        for (Object object : objects) {
+            out += object.toString() + "\n";
+        }
+        final Tooltip tooltip = new Tooltip();
+        tooltip.setShowDelay(new Duration(100));
+        tooltip.setText(out);
+        Tooltip.install(node, tooltip);
     }
 
     public void paint() {
@@ -167,18 +201,11 @@ public class MainScreen implements Initializable, Updater {
                 if (carriage.getGroup() != null) {
                     paintGroup(pos, carriage.getGroup());
                 }
-                CarriageMenu carriageMenu = new CarriageMenu(carriage, generator, this);
-                circle.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
-                    @Override
-                    public void handle(ContextMenuEvent event) {
-                        carriageMenu.show(circle, event.getScreenX(), event.getScreenY());
-                    }
-                });
-
-                final Tooltip tooltip = new Tooltip();
-                tooltip.setShowDelay(new Duration(100));
-                tooltip.setText(carriage.toString());
-                Tooltip.install(circle, tooltip);
+                if (carriage.getBridge() != null) {
+                    paintBridge(new Point2D(pos.getX(), pos.getY() - graphConfig.yDistance / 2), carriage.getBridge());
+                }
+                installCarriageMenu(circle, carriage);
+                installTooltip(circle, carriage);
             }
         }
 
@@ -194,6 +221,16 @@ public class MainScreen implements Initializable, Updater {
             drawPane.getChildren().remove(train);
             drawPane.getChildren().add(train);
         }
+    }
+
+    public void installCarriageMenu(Node node, Carriage carriage) {
+        CarriageMenu carriageMenu = new CarriageMenu(carriage, generator, this);
+        node.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
+            @Override
+            public void handle(ContextMenuEvent event) {
+                carriageMenu.show(node, event.getScreenX(), event.getScreenY());
+            }
+        });
     }
 
     public void paintRightArrow(int x1, int x2, int y1, int y2) {
@@ -214,7 +251,7 @@ public class MainScreen implements Initializable, Updater {
         double y = drawing.getVertexPoint2D(vertex).getY();
         if (train == null) {
             train = new Circle();
-            train.setFill(Color.WHITE);
+            train.setFill(Color.ORANGE);
             drawPane.getChildren().add(train);
             train.setRadius(graphConfig.xSize / 2);
             train.setCenterX(x);
@@ -234,6 +271,8 @@ public class MainScreen implements Initializable, Updater {
         }
         path = new Path();
         path.getElements().add(new MoveTo(x, y));
+        installTooltip(train, generator.train, generator.train.getPresent());
+        installCarriageMenu(train, generator.train.getPresent());
     }
 
     public void update() {

@@ -78,6 +78,10 @@ public class Carriage extends Position {
         bridge = null;
     }
 
+    public void deleteGroup() {
+        group = null;
+    }
+
     @Override
     public String toString() {
         return name;
